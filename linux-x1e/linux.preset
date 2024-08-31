@@ -1,0 +1,11 @@
+# mkinitcpio preset file for the '%PKGBASE%' package
+
+ALL_config="/etc/mkinitcpio.conf.d/x1e.conf"
+ALL_kver="%KERNVER%"
+
+PRESETS=('default')
+
+#default_config="/etc/mkinitcpio.conf"
+default_image="/boot/initramfs-linux-x1e.img"
+default_uki="/boot/linux-t14s.efi"
+default_options="--ukiconfig /etc/ukify.conf --kernelimage /boot/vmlinux"

@@ -1,0 +1,44 @@
+pkgname="x1e-firmware"
+pkgdesc="Linux firmware for Snapdragon X devices"
+pkgver=20240811
+pkgrel=0
+arch=("any")
+options=('!strip')
+url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
+license=('GPL2' 'GPL3' 'custom')
+makedepends=('git')
+options=(!strip)
+pkgname=(x1e-firmware)
+_srcdir=linux-firmware
+
+_backports=('82318c966fd1af87044299d34611751c76f70927')
+
+source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
+        "git+https://github.com/anonymix007/x1e-firmware")
+sha256sums=('SKIP'
+            'SKIP')
+
+prepare() {
+  cd linux-firmware
+  git checkout tags/${pkgver}
+  local _c
+  for _c in "${_backports[@]}"; do
+    git log --oneline -1 "${_c}"
+    git cherry-pick -n "${_c}"
+  done
+}
+
+package_x1e-firmware() {
+  install -Dt "${pkgdir}/usr/share/licenses/${pkgname}" -m644 ${_srcdir}/WHENCE
+
+  mkdir -pv "${pkgdir}"/usr/lib/firmware
+  cp -rv "${_srcdir}"/qca "${pkgdir}"/usr/lib/firmware
+  cp -rv "${_srcdir}"/qcom "${pkgdir}"/usr/lib/firmware
+  cp -rv "${_srcdir}"/ath12k "${pkgdir}"/usr/lib/firmware
+  cp -rv "${_srcdir}"/rtl_nic "${pkgdir}"/usr/lib/firmware
+
+  cd x1e-firmware
+
+  make DEST="${pkgdir}"/usr/lib install
+}
+
