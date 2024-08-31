@@ -1,0 +1,5 @@
+*/pkg
+*/src
+*.tar.*
+x1e-packages/
+x1e-firmware/*-firmware
