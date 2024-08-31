@@ -1,0 +1,23 @@
+pkgname=x1e-keyring
+pkgver=20240831
+pkgrel=0
+pkgdesc='X1E keyring'
+arch=('any')
+url='https://github.com/anonymix007/x1e-alarm'
+license=('GPL')
+install="${pkgname}.install"
+source=('Makefile'
+        'x1e.gpg'
+        'x1e-revoked'
+        'x1e-trusted')
+validpgpkeys=('EEBB4E103131C718FA853444C40DDC98C2007FB5'  # anonymix007
+             )
+sha256sums=('ecd83d71b0b3b25ce6ce9627359f3bc4078a07e2a8d9d645a1221928c2a199c6'
+            '4a14683ce59bc3032faf7055757d646a4cca39c3a828e61eba43870460de3027'
+            'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
+            '633a2ca769abca505b0e72f6e625f33e527c8246d1d876833f86073e5a2ef777')
+
+package() {
+	cd "${srcdir}"
+	make PREFIX=/usr DESTDIR=${pkgdir} install
+}
