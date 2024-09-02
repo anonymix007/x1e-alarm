@@ -2,14 +2,14 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=wip/x1e80100-6.11-rc5
+_branch=wip/x1e80100-6.11-rc6
 
 pkgbase=linux-x1e
-_srcname=linux-6.11-rc5
+_srcname=linux-6.11-rc6
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
-pkgver="6.11.rc5"
-pkgrel=1
+pkgver="6.11.rc6"
+pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
