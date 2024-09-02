@@ -9,7 +9,7 @@ _srcname=linux-6.11-rc6
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
 pkgver="6.11.rc6"
-pkgrel=0
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -22,7 +22,7 @@ source=('config'
         'mkinitcpio.conf.d-x1e.conf'
         'ukify.conf')
 
-md5sums=('0b4ec5882cc93f93a0c10f60a33ec430'
+md5sums=('dfc830dcfc387e805fa0fe1cd9624111'
          '912995442e210b8c9b9b007eb3d67a3e'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
@@ -79,7 +79,7 @@ build() {
 
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
-  depends=('coreutils' 'x1e-firmware' 'kmod' 'mkinitcpio>=0.7' 'systemd-ukify')
+  depends=('coreutils' 'kmod' 'mkinitcpio>=0.7' 'systemd-ukify' 'x1e-firmware')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" "WIREGUARD-MODULE")
   replaces=('linux-armv8')
