@@ -1,0 +1,50 @@
+pkgname=x1e-uki
+pkgver=0.0.1
+pkgrel=0
+pkgdesc="UKI Installer for Snapdragon X"
+url='https://uapi-group.org/specifications/specs/unified_kernel_image/'
+arch=('aarch64')
+license=('LGPL-2.1-or-later')
+
+makedepends=('acl' 'cryptsetup' 'docbook-xsl' 'gperf' 'lz4' 'xz' 'pam' 'libelf'
+             'intltool' 'iptables' 'kmod' 'libarchive' 'libcap' 'libidn2' 'libgcrypt'
+             'libmicrohttpd' 'libxcrypt' 'libxslt' 'util-linux' 'linux-api-headers'
+             'python-jinja' 'python-lxml' 'quota-tools' 'shadow' 'git'
+             'meson' 'libseccomp' 'pcre2' 'audit' 'kexec-tools' 'libxkbcommon'
+             'bash-completion' 'p11-kit' 'systemd' 'libfido2' 'tpm2-tss' 'rsync'
+             'bpf' 'libbpf' 'clang' 'llvm' 'curl' 'gnutls' 'python-pyelftools'
+             'libpwquality' 'qrencode' 'lib32-gcc-libs' 'python-pefile')
+source=("git+https://github.com/anonymix007/systemd#branch=multiple-dt"
+        "git+https://github.com/anonymix007/systemd-stub"
+        "x1e.conf"
+        "99-uki.hook")
+sha256sums=('SKIP'
+            'SKIP'
+            'd05f807d048c21a21c12f58e3ea24c84aa55608c8ed98dfab13799c303897462'
+            'ee9b7d3eaf37f498b2a5880d6bfab693d755600fd4146db5ebf7c981794a05f9')
+
+build() {
+  cd systemd
+  meson setup -Ddebug=true -Dbootloader=enabled builddir
+  meson compile -C builddir version.h
+  cd ../systemd-stub
+  make EFI_ARCH=aa64 CROSS_COMPILE=aarch64-linux-gnu-
+}
+
+package() {
+  conflicts=('systemd-ukify')
+
+  install -Dm644 "${srcdir}/systemd/src/ukify/ukify.py" "${pkgdir}/usr/lib/systemd/ukify"
+  install -Dm644 "${srcdir}/x1e.conf" "${pkgdir}/etc/x1e-uki.conf"
+
+  install -d "${pkgdir}/usr/share/hwids"
+
+  for filename in ${srcdir}/systemd-stub/hwids/*.txt; do
+    install -Dm644 "${filename}" "${pkgdir}/usr/share/hwids/"
+  done
+
+  install -Dm644 "${srcdir}/99-uki.hook" "${pkgdir}/usr/share/libalpm/hooks/99-${pkgname}.hook"
+
+  install -Dm644 "${srcdir}/systemd-stub/build/linuxaa64.efi.stub" "${pkgdir}/usr/lib/systemd/boot/efi/linuxdtbaa64.efi.stub"
+}
+

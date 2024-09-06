@@ -1,0 +1,12 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Target = boot/vmlinux
+Target = etc/kernel/cmdline
+Target = boot/initramfs-linux-x1e.img
+
+[Action]
+Description = Building UKI
+When = PostTransaction
+Exec = /usr/bin/python /usr/lib/systemd/ukify build --config /etc/x1e-uki.conf -o /boot/linux-x1e.efi
