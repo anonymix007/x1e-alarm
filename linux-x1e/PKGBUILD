@@ -9,7 +9,7 @@ _srcname=linux-6.11-rc6
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
 pkgver="6.11.rc6"
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -20,14 +20,14 @@ source=('config'
         '60-linux.hook'
         '90-linux.hook'
         'mkinitcpio.conf.d-x1e.conf'
-        'ukify.conf')
+        'dracut.conf.d-x1e.conf')
 
 md5sums=('dfc830dcfc387e805fa0fe1cd9624111'
-         '912995442e210b8c9b9b007eb3d67a3e'
+         '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
          '746fbd75eb10fb3dcd3428353c29bbe2'
-         'a3025a9b405e2c0090ff17f149d44462')
+         '1585ab38da027fbcebb675250ccc2ab2')
 
 _dtbs=('arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb'
        'arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb'
@@ -79,7 +79,7 @@ build() {
 
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
-  depends=('coreutils' 'kmod' 'mkinitcpio>=0.7' 'systemd-ukify' 'x1e-firmware')
+  depends=('coreutils' 'kmod' 'initramfs' 'x1e-firmware')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=("linux=${pkgver}" "WIREGUARD-MODULE")
   replaces=('linux-armv8')
@@ -125,14 +125,15 @@ _package() {
   sed "${_subst}" ../mkinitcpio.conf.d-x1e.conf |
     install -Dm644 /dev/stdin "${pkgdir}/etc/mkinitcpio.conf.d/x1e.conf"
 
+  # install dracut.conf.d-x1e.conf
+  sed "${_subst}" ../dracut.conf.d-x1e.conf |
+    install -Dm644 /dev/stdin "${pkgdir}/etc/dracut.conf.d/x1e.conf"
+
   # install pacman hooks
   sed "${_subst}" ../60-linux.hook |
     install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/60-${pkgbase}.hook"
   sed "${_subst}" ../90-linux.hook |
     install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
-
-  # install systemd-ukify config file
-  install -Dm644 ../ukify.conf "${pkgdir}/etc/ukify.conf"
 }
 
 _package-headers() {

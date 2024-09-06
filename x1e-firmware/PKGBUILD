@@ -1,7 +1,7 @@
 pkgname="x1e-firmware"
 pkgdesc="Linux firmware for Snapdragon X devices"
 pkgver=20240811
-pkgrel=2
+pkgrel=3
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -14,9 +14,11 @@ _srcdir=linux-firmware
 _backports=('82318c966fd1af87044299d34611751c76f70927')
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
-        "git+https://github.com/anonymix007/x1e-firmware")
+        "git+https://github.com/anonymix007/x1e-firmware"
+        "dracut.conf.d-x1e-firmware.conf")
 sha256sums=('SKIP'
-            'SKIP')
+            'SKIP'
+            '7e0fe9ae0b6690567fb51d97997f967b5903af13f5d567f810f298eeb0d3e32c')
 
 prepare() {
   cd linux-firmware
@@ -29,6 +31,9 @@ prepare() {
 }
 
 package_x1e-firmware() {
+  depends=('initramfs')
+
+  install -Dm644 "${srcdir}/dracut.conf.d-x1e-firmware.conf" "${pkgdir}/etc/dracut.conf.d/x1e-firmware.conf"
   install -Dt "${pkgdir}/usr/share/licenses/${pkgname}" -m644 ${_srcdir}/WHENCE
 
   mkdir -pv "${pkgdir}"/usr/lib/firmware
