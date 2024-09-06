@@ -1,9 +1,9 @@
 #/bin/sh
 
+set -xe
+
 OUTDIR=x1e-packages
 REPO=linux-x1e
-
-
 
 if [[ $1 == "--build-only" ]]; then
     echo "Building packages: $2"
@@ -14,7 +14,7 @@ if [[ $1 == "--build-only" ]]; then
     done
 elif [[ $1 != "--skip-build" ]]; then
     echo 'Building packages...'
-    for pkg in "linux-x1e" "x1e-firmware" "x1e-keyring" ; do
+    for pkg in "linux-x1e" "x1e-firmware" "x1e-keyring" "x1e-uki"; do
         cd $pkg
         PKGEXT=.pkg.tar.xz CARCH=aarch64 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- nice -19 makepkg -sCA
         cd ..

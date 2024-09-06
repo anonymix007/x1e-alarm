@@ -1,19 +1,19 @@
 pkgname=x1e-uki
-pkgver=0.0.1
+pkgver=0.0.2
 pkgrel=0
 pkgdesc="UKI Installer for Snapdragon X"
 url='https://uapi-group.org/specifications/specs/unified_kernel_image/'
 arch=('aarch64')
 license=('LGPL-2.1-or-later')
-
+depends=('python-pefile' 'python-pyelftools' 'systemd')
 makedepends=('acl' 'cryptsetup' 'docbook-xsl' 'gperf' 'lz4' 'xz' 'pam' 'libelf'
              'intltool' 'iptables' 'kmod' 'libarchive' 'libcap' 'libidn2' 'libgcrypt'
              'libmicrohttpd' 'libxcrypt' 'libxslt' 'util-linux' 'linux-api-headers'
              'python-jinja' 'python-lxml' 'quota-tools' 'shadow' 'git'
              'meson' 'libseccomp' 'pcre2' 'audit' 'kexec-tools' 'libxkbcommon'
-             'bash-completion' 'p11-kit' 'systemd' 'libfido2' 'tpm2-tss' 'rsync'
-             'bpf' 'libbpf' 'clang' 'llvm' 'curl' 'gnutls' 'python-pyelftools'
-             'libpwquality' 'qrencode' 'lib32-gcc-libs' 'python-pefile')
+             'bash-completion' 'p11-kit' 'libfido2' 'tpm2-tss' 'rsync' 'bpf'
+             'libbpf' 'clang' 'llvm' 'curl' 'gnutls' 'libpwquality' 'qrencode' 'lib32-gcc-libs')
+
 source=("git+https://github.com/anonymix007/systemd#branch=multiple-dt"
         "git+https://github.com/anonymix007/systemd-stub"
         "x1e.conf"
