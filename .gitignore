@@ -4,3 +4,4 @@
 x1e-packages/
 x1e-firmware/*-firmware
 x1e-uki/systemd*
+*.efi.*

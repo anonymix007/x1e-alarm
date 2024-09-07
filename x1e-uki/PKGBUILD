@@ -1,5 +1,5 @@
 pkgname=x1e-uki
-pkgver=0.0.2
+pkgver=0.0.3
 pkgrel=0
 pkgdesc="UKI Installer for Snapdragon X"
 url='https://uapi-group.org/specifications/specs/unified_kernel_image/'
@@ -16,20 +16,14 @@ makedepends=('acl' 'cryptsetup' 'docbook-xsl' 'gperf' 'lz4' 'xz' 'pam' 'libelf'
 
 source=("git+https://github.com/anonymix007/systemd#branch=multiple-dt"
         "git+https://github.com/anonymix007/systemd-stub"
+        "https://github.com/anonymix007/systemd-stub/releases/download/v0.0.1/linuxaa64.efi.stub"
         "x1e.conf"
         "99-uki.hook")
 sha256sums=('SKIP'
             'SKIP'
+            '2343754b2b9a037af7ea7214449eee5ffa0ae27e04b3a5d5bf0443aa900b1b51'
             'd05f807d048c21a21c12f58e3ea24c84aa55608c8ed98dfab13799c303897462'
             'ee9b7d3eaf37f498b2a5880d6bfab693d755600fd4146db5ebf7c981794a05f9')
-
-build() {
-  cd systemd
-  meson setup -Ddebug=true -Dbootloader=enabled builddir
-  meson compile -C builddir version.h
-  cd ../systemd-stub
-  make EFI_ARCH=aa64 CROSS_COMPILE=aarch64-linux-gnu-
-}
 
 package() {
   conflicts=('systemd-ukify')
@@ -45,6 +39,6 @@ package() {
 
   install -Dm644 "${srcdir}/99-uki.hook" "${pkgdir}/usr/share/libalpm/hooks/99-${pkgname}.hook"
 
-  install -Dm644 "${srcdir}/systemd-stub/build/linuxaa64.efi.stub" "${pkgdir}/usr/lib/systemd/boot/efi/linuxdtbaa64.efi.stub"
+  install -Dm644 "${srcdir}/linuxaa64.efi.stub" "${pkgdir}/usr/lib/systemd/boot/efi/linuxdtbaa64.efi.stub"
 }
 
