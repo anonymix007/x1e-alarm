@@ -5,6 +5,7 @@ Operation = Upgrade
 Target = boot/vmlinux
 Target = etc/kernel/cmdline
 Target = boot/initramfs-linux-x1e.img
+Target = etc/x1e-uki.conf
 
 [Action]
 Description = Building UKI

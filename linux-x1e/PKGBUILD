@@ -9,7 +9,7 @@ _srcname=linux-6.11-rc6
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
 pkgver="6.11.rc6"
-pkgrel=4
+pkgrel=5
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -26,7 +26,7 @@ md5sums=('dfc830dcfc387e805fa0fe1cd9624111'
          '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
-         '746fbd75eb10fb3dcd3428353c29bbe2'
+         '35c3eb1c6e9efb90b2ca0c6234bddc14'
          'e419939510bcb0b4e39b38e5392226c6')
 
 _dtbs=('arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb'
