@@ -9,7 +9,7 @@ _srcname=linux-6.11-rc7
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
 pkgver="6.11.rc7"
-pkgrel=0
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -22,7 +22,7 @@ source=('config'
         'mkinitcpio.conf.d-x1e.conf'
         'dracut.conf.d-x1e.conf')
 
-md5sums=('b9f3e14370bd3fc93db09ffe5dac7062'
+md5sums=('5286ea154c457b73c7941127f9045176'
          '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
