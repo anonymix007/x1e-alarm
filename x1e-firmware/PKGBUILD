@@ -1,7 +1,7 @@
 pkgname="x1e-firmware"
 pkgdesc="Linux firmware for Snapdragon X devices"
-pkgver=20240811
-pkgrel=3
+pkgver=20240909
+pkgrel=0
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -11,7 +11,7 @@ options=(!strip)
 pkgname=(x1e-firmware)
 _srcdir=linux-firmware
 
-_backports=('82318c966fd1af87044299d34611751c76f70927')
+_backports=()
 
 source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
         "git+https://github.com/anonymix007/x1e-firmware"

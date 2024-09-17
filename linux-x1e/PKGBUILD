@@ -2,14 +2,14 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=wip/x1e80100-6.11-rc7
+_branch=wip/x1e80100-6.11
 
 pkgbase=linux-x1e
-_srcname=linux-6.11-rc7
+_srcname=linux-6.11
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
-pkgver="6.11.rc7"
-pkgrel=1
+pkgver="6.11"
+pkgrel=0
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -22,7 +22,7 @@ source=('config'
         'mkinitcpio.conf.d-x1e.conf'
         'dracut.conf.d-x1e.conf')
 
-md5sums=('5286ea154c457b73c7941127f9045176'
+md5sums=('19a57e0470e6d2fbca2f764ec14271f5'
          '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
