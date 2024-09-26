@@ -1,7 +1,7 @@
 pkgname="x1e-firmware"
 pkgdesc="Linux firmware for Snapdragon X devices"
 pkgver=20240909
-pkgrel=0
+pkgrel=1
 arch=("any")
 options=('!strip')
 url="https://git.kernel.org/?p=linux/kernel/git/firmware/linux-firmware.git;a=summary"
@@ -18,7 +18,7 @@ source=("git+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firm
         "dracut.conf.d-x1e-firmware.conf")
 sha256sums=('SKIP'
             'SKIP'
-            '7e0fe9ae0b6690567fb51d97997f967b5903af13f5d567f810f298eeb0d3e32c')
+            '9d8ee249e4e979fb3cccdb98d18ef345d5ec9865f33503cd092edf157fbf01f0')
 
 prepare() {
   cd linux-firmware
