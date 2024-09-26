@@ -9,7 +9,7 @@ _srcname=linux-6.11
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
 pkgver="6.11"
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -26,8 +26,8 @@ md5sums=('3fce70701dd1231ddcf2168fbec3fc55'
          '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
-         '62b7a9a72a29b8f94b6103cac38919f4'
-         'e419939510bcb0b4e39b38e5392226c6')
+         '0519f1d342c77eada39f8d462a5c08da'
+         'ae092ba382d1870e4196de7985d66e0b')
 
 _dtbs=('arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb'
        'arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb'
