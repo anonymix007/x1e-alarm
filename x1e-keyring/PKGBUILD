@@ -1,5 +1,5 @@
 pkgname=x1e-keyring
-pkgver=20240831
+pkgver=20250702
 pkgrel=0
 pkgdesc='X1E keyring'
 arch=('any')

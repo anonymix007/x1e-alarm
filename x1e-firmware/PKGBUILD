@@ -1,6 +1,6 @@
 pkgname="x1e-firmware"
 pkgdesc="Linux firmware for Snapdragon X devices"
-pkgver=20250311
+pkgver=20250627
 pkgrel=0
 arch=("any")
 options=('!strip')

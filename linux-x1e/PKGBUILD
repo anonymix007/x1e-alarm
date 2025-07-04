@@ -2,13 +2,13 @@
 # Maintainer: Kevin Mihelich <kevin@archlinuxarm.org>
 
 buildarch=8
-_branch=wip/x1e80100-6.14
+_branch=wip/x1e80100-6.16-rc4
 
 pkgbase=linux-x1e
-_srcname=linux-6.14
+_srcname=linux-6.16.rc4
 _kernelname=${pkgbase#linux}
 _desc="Linux for Snapdragon X"
-pkgver="6.14"
+pkgver="6.16.rc4"
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -22,24 +22,26 @@ source=('config'
         'mkinitcpio.conf.d-x1e.conf'
         'dracut.conf.d-x1e.conf')
 
-md5sums=('befd0ae130768683afb82d9f2da32012'
+md5sums=('0800ab25fef44a9c044e4b5a770dd794'
          '5fed4c1a928a8c705773499f18395423'
          '0a5f16bfec6ad982a2f6782724cca8ba'
          '6f99095fbe9f577233b53a83802aab59'
          'a1a1d411373cc673df937b4ebf4ad42b'
          '1efda90d007fa8e3efc3140cdb5bea2c')
 
-_dtbs=('arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb'
-       'arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtb'
-       'arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-crd.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-hp-omnibook-x14.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-lenovo-yoga-slim7x.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus13.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-microsoft-romulus15.dtb'
-       'arch/arm64/boot/dts/qcom/x1e80100-qcp.dtb')
+_dtbs=('x1e001de-devkit'
+       'x1e78100-lenovo-thinkpad-t14s'
+       'x1e78100-lenovo-thinkpad-t14s-oled'
+       'x1e80100-asus-vivobook-s15'
+       'x1e80100-crd'
+       'x1e80100-dell-xps13-9345'
+       'x1e80100-hp-elitebook-ultra-g1q'
+       'x1e80100-hp-omnibook-x14'
+       'x1e80100-lenovo-yoga-slim7x'
+       'x1e80100-microsoft-romulus13'
+       'x1e80100-microsoft-romulus15'
+       'x1e80100-qcp'
+       'x1p42100-crd')
 
 prepare() {
   MAKEFLAGS=-j32
@@ -102,7 +104,8 @@ _package() {
   #make INSTALL_DTBS_PATH="${pkgdir}/boot/dtbs" dtbs_install
   # We just need X1E dtbs
   for _dtb in "${_dtbs[@]}"; do
-    install -Dm644 "${_dtb}" -t "${pkgdir}/boot"
+    install -Dm644 "arch/arm64/boot/dts/qcom/${_dtb}.dtb" -t "${pkgdir}/boot"
+    install -Dm644 "arch/arm64/boot/dts/qcom/${_dtb}-el2.dtb" -t "${pkgdir}/boot"
   done
 
   echo "Installing modules..."

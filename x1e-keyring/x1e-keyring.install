@@ -1,9 +1,9 @@
 post_upgrade() {
 	if usr/bin/pacman-key -l >/dev/null 2>&1; then
-		usr/bin/pacman-key --populate t14s
+		usr/bin/pacman-key --populate x1e
 	else
 		echo " >>> Run \`pacman-key --init\` to set up your pacman keyring."
-		echo " >>> Then run \`pacman-key --populate t14s\` to install the T14s keyring."
+		echo " >>> Then run \`pacman-key --populate x1e\` to install the x1e keyring."
 	fi
 }
 
